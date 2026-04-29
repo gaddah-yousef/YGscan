@@ -4,7 +4,7 @@
 # @Author  : w8ay
 # @File    : test_idea.py
 
-from W13SCAN.api import scan,KB
+from YGSCAN.api import scan,KB
 
 url = "http://testphp.vulnweb.com/.idea/workspace.xml"
 module_name = "idea"

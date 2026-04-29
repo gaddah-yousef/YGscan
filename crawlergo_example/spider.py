@@ -15,13 +15,11 @@ from lib.core.data import KB
 
 root = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(root, "../"))
-sys.path.append(os.path.join(root, "../", "W13SCAN"))
+sys.path.append(os.path.join(root, "../", "YGSCAN"))
 from api import modulePath, init, FakeReq, FakeResp, HTTPMETHOD, task_push_from_name, start, logger
 
-# 爬虫文件路径
 Excvpath = "/Users/boyhack/tools/crawlergo/crawlergo_darwin"
 
-# Chrome 路径
 Chromepath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 
@@ -112,25 +110,25 @@ def vulscan(target):
     logger.info("发现漏洞:{}".format(KB.output.count()))
 
 
-def init_w13scan():
+def init_ygscan():
     root = modulePath()
     configure = {
-        "debug": False,  # debug模式会显示更多信息
+        "debug": False,
         "level": 2,
         "timeout": 30,
         "retry": 3,
-        "json": "",  # 自定义输出json结果路径,
+        "json": "",
         "html": True,
-        "threads": 30,  # 线程数量,
+        "threads": 30,
         "disable": [],
         "able": [],
-        "excludes": ["google", "lastpass", '.gov.cn']  # 不扫描的网址
+        "excludes": ["google", "lastpass", '.gov.cn']
     }
     init(root, configure)
 
 
 if __name__ == '__main__':
     target = "http://testphp.vulnweb.com/"
-    init_w13scan()
+    init_ygscan()
     vulscan(target)
     # read_test()

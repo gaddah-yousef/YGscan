@@ -1,10 +1,10 @@
 ## 资源整合能力
-w13scan整合了许多开源扫描器，但并不是直接拿来用，而是充分学习了开源扫描器的精华后，将其先进的扫描技术与payload整合到了其中。下列列表详细列举了整合的扫描器：
-- sqlmap(https://github.com/sqlmapproject/sqlmap) w13scan sql注入模块(报错注入，布尔注入)
+ygscan整合了许多开源扫描器，但并不是直接拿来用，而是充分学习了开源扫描器的精华后，将其先进的扫描技术与payload整合到了其中。下列列表详细列举了整合的扫描器：
+- sqlmap(https://github.com/sqlmapproject/sqlmap) ygscan sql注入模块(报错注入，布尔注入)
 - wascan 一些指纹识别数据
 
 ## fingprints指纹数据
-`W13SCAN/fingprints`目录下按照指纹类别定义有`framework`,`os`,`programing`,`webserver`
+`YGSCAN/fingprints`目录下按照指纹类别定义有`framework`,`os`,`programing`,`webserver`
 新增指纹需要根据类别在该目录下新增一个python文件，并定义`fingerprint`函数，函数有两个参数`headers`字典型，为header头字典,`content`为当前网页源码,成功返回指纹字符串，多个指纹可返回一个列表。
 ```python
 #!/usr/bin/env python 
@@ -67,7 +67,7 @@ def fingerprint(headers:dict, content:str):
 | text   | str     |   返回文本                                                  |
 
 ## Result格式
-w13scan的结果文件以json格式为主。
+ygscan的结果文件以json格式为主。
 ```json
 {
     "name": "XSS语义化探测插件", // 插件名称

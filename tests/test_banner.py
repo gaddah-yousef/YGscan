@@ -12,7 +12,7 @@ from cowpy.cow import get_cow, milk_random_cow
 from lib.core.common import random_colorama
 
 cow = get_cow()
-msg = "w13scan v1.0"
+msg = "ygscan v1.0"
 
 for i in range(50):
     sfw = True

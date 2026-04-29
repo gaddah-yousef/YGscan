@@ -42,16 +42,16 @@ class TestCase(unittest.TestCase):
         self.assertTrue(len(links) > 0)
 
     def test_createGithubIssue(self):
-        errMsg = "W13scan baseproxy get request traceback:\n"
+        errMsg = "YGscan baseproxy get request traceback:\n"
         errMsg += "Running version: {}\n".format(VERSION)
         errMsg += "Python version: {}\n".format(sys.version.split()[0])
         errMsg += "Operating system: {}\n".format(platform.platform())
         errMsg += "Threads: {}".format(51)
         excMsg = '''
 Traceback (most recent call last):
-  File "/W13SCAN/lib/plugins.py", line 51, in execute
+  File "/YGSCAN/lib/plugins.py", line 51, in execute
     output = self.audit()
-  File "/W13SCAN/plugins/PerFile/analyze_parameter.py", line 60, in audit
+  File "/YGSCAN/plugins/PerFile/analyze_parameter.py", line 60, in audit
     raise Exception("test exception 111")
 Exception: test exception
         '''.strip()

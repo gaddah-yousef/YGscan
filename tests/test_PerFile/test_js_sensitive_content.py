@@ -4,7 +4,7 @@
 # @Author  : w8ay
 # @File    : test_js_sensitive_content.py
 
-from W13SCAN.api import scan,KB
+from YGSCAN.api import scan,KB
 
 url = "https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/news/static/protocol/https/global/js/common_43bda07.js"
 url = "https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/news/static/protocol/https/global/js/logic_c20cf8c.js"

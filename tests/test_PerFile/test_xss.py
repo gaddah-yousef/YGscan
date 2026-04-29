@@ -4,7 +4,7 @@
 # @Author  : w8ay
 # @File    : test_xss.py
 
-from W13SCAN.api import scan,KB
+from YGSCAN.api import scan,KB
 
 url = "http://scanbox.io/xss/reflect_xss.php?name=a&submit=submit"
 url = "http://discuz.demo/2.php?u=aaa"

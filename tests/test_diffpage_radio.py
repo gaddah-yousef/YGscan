@@ -59,7 +59,7 @@ class TestCase(unittest.TestCase):
                         <div class="details">
                             <div class="desc"> 域名资产记录 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>
@@ -72,7 +72,7 @@ class TestCase(unittest.TestCase):
                         <div class="details">
                             <div class="desc"> IP总数 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>
@@ -85,7 +85,7 @@ class TestCase(unittest.TestCase):
                         <div class="details">
                             <div class="desc"> 端口服务资产 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>
@@ -98,7 +98,7 @@ class TestCase(unittest.TestCase):
                         <div class="details">
                             <div class="desc"> 漏洞总数 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>
@@ -236,7 +236,7 @@ layui.use(['table', 'laytpl'],
                         <div class="details">
                             <div class="desc"> 域名资产记录 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>
@@ -249,7 +249,7 @@ layui.use(['table', 'laytpl'],
                         <div class="details">
                             <div class="desc"> IP总数 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>
@@ -262,7 +262,7 @@ layui.use(['table', 'laytpl'],
                         <div class="details">
                             <div class="desc"> 端口服务资产 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>
@@ -275,7 +275,7 @@ layui.use(['table', 'laytpl'],
                         <div class="details">
                             <div class="desc"> 漏洞总数 </div>
                         </div>
-                        <a class="more" href="#"> 查看更多
+                        <a class="more" href="
                     <i class="m-icon-swapright m-icon-white"></i>
                 </a>
                     </div>

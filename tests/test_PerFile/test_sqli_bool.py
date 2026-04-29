@@ -5,7 +5,7 @@
 # @File    : test_sqli_bool.py
 
 
-from W13SCAN.api import scan, KB
+from YGSCAN.api import scan, KB
 
 url = "http://scanbox.io/sql_injection/sql_num.php?id=1&submit=submit"
 # url = "http://emlog6.demo/?post=1"

@@ -5,7 +5,7 @@
 # @File    : test_directory_traversal.py.py
 
 
-from W13SCAN.api import scan, KB
+from YGSCAN.api import scan, KB
 
 url = "http://demo.aisec.cn/demo/aisec/html_link.php?id=index.html"
 module_name = "directory_traversal"
