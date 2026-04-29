@@ -26,7 +26,7 @@ It features a rich set of automated detection plugins:
 
 To use YGscan via Docker (Recommended):
 ```bash
-git clone <repository>
+git clone https://github.com/gaddah-yousef/YGscan.git
 cd scanning/ygscan
 
 # Build the docker container locally
