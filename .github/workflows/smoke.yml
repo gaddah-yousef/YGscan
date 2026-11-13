@@ -1,0 +1,27 @@
+name: YGscan compatibility smoke tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-and-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install scanner dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Compile Python files
+        run: python -m compileall -q YGscan
+      - name: Check CLI help without network scanning
+        run: python YGscan/ygscan.py --help
+      - name: Build container
+        run: docker build -t ygscan:smoke .
+      - name: Check container CLI help
+        run: docker run --rm --network none ygscan:smoke --help

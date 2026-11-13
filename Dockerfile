@@ -1,10 +1,21 @@
-FROM python:3.10.5-alpine
+# Isolated educational scanner image. Use only on authorized lab targets.
+FROM python:3.11-slim
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-RUN apk update && apk --no-cache add git build-base libffi-dev libxml2-dev libxslt-dev libressl-dev gcc
-ADD requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-ADD . /ygscan/
-WORKDIR /ygscan/YGSCAN
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
 
-ENTRYPOINT ["/bin/ash"]
+WORKDIR /opt/ygscan
+COPY requirements.txt ./
+RUN python -m pip install --upgrade pip && \
+    python -m pip install -r requirements.txt && \
+    groupadd --system ygscan && \
+    useradd --system --gid ygscan --home-dir /opt/ygscan ygscan
+
+COPY --chown=ygscan:ygscan YGscan ./YGscan
+USER ygscan
+WORKDIR /opt/ygscan/YGscan
+
+# Demonstrate help by default; actual scans require explicit user arguments.
+ENTRYPOINT ["python", "ygscan.py"]
+CMD ["--help"]
