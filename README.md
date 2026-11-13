@@ -55,8 +55,8 @@ Features vary by plugin; a module's presence is not evidence that it will detect
 │   ├── fingprints/           # Technology, OS and server fingerprints
 │   └── ...                   # Detection modules and helper libraries
 ├── tests/                   # Existing test materials
-├── Dockerfile               # Legacy image recipe
-├── requirements.txt         # Legacy pinned dependencies
+├── Dockerfile               # Python 3.11 image with corrected working directory
+├── requirements.txt         # Updated constrained dependencies
 ├── CONTRIBUTORS.md          # Upstream credits and inspirations
 └── README.md
 ```
@@ -67,7 +67,7 @@ Features vary by plugin; a module's presence is not evidence that it will detect
 
 **Prerequisites:** Python 3 and a disposable, isolated environment (virtual machine or container); a deliberately vulnerable training application hosted locally; written authorization for any scan.
 
-The current Dockerfile is a **legacy recipe** based on `python:3.10.5-alpine`. It installs older dependencies and sets `WORKDIR /ygscan/YGSCAN`, whereas the versioned source directory is `YGscan/`. The published Docker commands in the old README therefore may not work unchanged.
+The Dockerfile has been revised to use **Python 3.11**, install bounded dependency versions, copy the actual `YGscan/` source directory, run as a non-root user and start with `--help` by default. A no-network smoke-check workflow has also been added. **Build success has not yet been independently verified here.**
 
 ### Inspect the source and CLI
 
@@ -81,7 +81,16 @@ python -m pip install -r requirements.txt
 python YGscan/ygscan.py -h
 ```
 
-**Compatibility warning:** installation may fail due to the age of pinned dependencies; use a disposable sandbox and review package security advisories before installing. An unsupported legacy dependency should be upgraded and regression-tested, not installed blindly on a production workstation.
+**Compatibility warning:** the constraints have been modernized, but the scanner's legacy upstream modules can still require source-code changes. Install and test **only in an isolated environment**; check GitHub Actions smoke results and dependency advisories before use.
+
+### Docker: build and inspect CLI safely
+
+```bash
+docker build -t ygscan:local .
+docker run --rm --network none ygscan:local --help
+```
+
+To assess **only your own isolated target**, explicitly enable the appropriate lab network and pass `-u http://<authorized-lab-host>/`. The image does **not** scan any target automatically.
 
 ### Example active scan against a locally controlled target
 
@@ -116,19 +125,19 @@ A well-structured assessment should record the tested endpoint, request characte
 
 | Area | Observation | Recommended action |
 | --- | --- | --- |
-| Python packaging | Legacy dependencies and import structure | Modernize and run a supported-version test matrix |
-| Container | Dockerfile uses a mismatched working directory | Correct paths and add a build smoke test |
+| Python packaging | Bounded constraints updated for Python 3.11; legacy modules remain | Verify dependency compatibility and audit packages |
+| Container | Directory corrected and non-root image created | Confirm build and smoke results in CI |
 | Attribution | Scanner derives from community code | Preserve upstream credits and document personal contributions |
-| Testing | No demonstrated full CI success | Add pytest unit tests and offline fixtures |
+| Testing | Python compile/CLI and Docker smoke workflow added | Verify the workflow, add offline plugin-level fixtures |
 | Scanning ethics | Active probes may affect target applications | Restrict scope, rate-limit and use local labs |
 | Reproducibility | Examples historically used an external demo target | Use a deterministic locally hosted fixture |
 
 ## 7. Recommended roadmap
 
-1. Establish a clean baseline: supported Python version, pinned/audited dependencies, local startup.
-2. Fix the Dockerfile paths and provide a health/smoke test.
-3. Introduce offline HTTP fixtures for several representative plugins.
-4. Add CI for import validation, formatting, unit tests and dependency audits.
+1. Confirm the Python 3.11 CLI and Docker smoke workflow pass in GitHub Actions.
+2. Audit updated dependencies and lock tested versions for reproducibility.
+3. Introduce offline HTTP fixtures for representative plugins.
+4. Add plugin-level unit tests, linters and dependency audits.
 5. Normalize reports (severity, confidence, proof/evidence and remediation).
 6. Create a transparent change log distinguishing **upstream**, **modified**, and **original** modules.
 
