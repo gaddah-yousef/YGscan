@@ -1,72 +1,77 @@
-<h1 align="center">YGscan</h1>
+<div align="center">
 
-> YGscan is an open-source Web Vulnerability Discovery Tool based on Python3. It supports both active scanning and passive proxy scanning, and runs across Windows, Linux, and Mac OS.
+# 🕸️ YGscan
+### Web Vulnerability Scanning · Plugin-Based Security Research · Python
 
-##  Presentation
+![Python](https://img.shields.io/badge/Language-Python-3776AB?logo=python&logoColor=white)
+![Security](https://img.shields.io/badge/Scope-Authorized%20Testing-0B7285)
+![Origin](https://img.shields.io/badge/Origin-Community%20Project-6C757D)
 
-YGscan is a powerful auditing tool completely repackaged and customized by **yousef_ZEX22**.
+**A customized, community-derived web security scanning toolkit with active scanning and proxy-oriented modules.**
 
-It features a rich set of automated detection plugins:
-- **XSS Scanning** (Semantic-based reflective XSS scanning with high accuracy)
-- **JSONP Information Leakage**
-- **SQL Injection** (Error-based, Boolean-based, Time-based)
-- **HTTP Smuggling Attacks**
-- **Fastjson Detection and Exploitation**
-- **.Net Cross-Site Scripting**
-- **IIS Parsing Vulnerabilities**
-- **Sensitive File / Information Leaks** (Backups, directories, git/svn, phpinfo, etc.)
-- **Deserialization vulnerabilities**
-- **Command / Code Injection** (OS Command, PHP, ASP)
-- **Path Traversal Vulnerabilities**
-- **Struts2 Vulnerabilities** (s2-016, s2-032, s2-045)
-- **Webpack Source File Leakage**
-- **Unauthorized Access Plugins**
+[Overview](#-capabilities) · [Getting started](#-getting-started) · [Attribution](#-upstream-attribution) · [Portfolio](https://github.com/gaddah-yousef/SOC-LAB/blob/main/docs/portfolio/github-projects.md)
 
-##  Installation
+</div>
 
-To use YGscan via Docker (Recommended):
+---
+
+## 🎯 Capabilities
+
+The source tree contains modular implementations for:
+
+- Web server and framework fingerprinting
+- XSS, SQL injection and injection-related checks
+- Information exposure and path-traversal checks
+- Request parsing and proxy-based analysis
+- Multiple vulnerability-specific detection plugins
+
+> **Status:** this is a research/learning adaptation of existing community code, **not an independently validated scanner**. Module coverage does not imply a guaranteed ability to detect or exploit any particular vulnerability.
+
+## 🧩 How it is organized
+
+| Path | Purpose |
+| --- | --- |
+| [`YGscan/ygscan.py`](YGscan/ygscan.py) | Python entry point |
+| [`YGscan/`](YGscan/) | Scanner implementation and modules |
+| [`YGscan/fingprints/`](YGscan/fingprints/) | Fingerprinting logic |
+| [`requirements.txt`](requirements.txt) | Python dependencies |
+| [`Dockerfile`](Dockerfile) | Legacy container packaging |
+| [`CONTRIBUTORS.md`](CONTRIBUTORS.md) | Original contributor information |
+
+## ⚙️ Getting started
+
+Use an isolated Python virtual environment:
+
 ```bash
 git clone https://github.com/gaddah-yousef/YGscan.git
-cd scanning/ygscan
+cd YGscan
 
-# Build the docker container locally
-docker build -t ygscan .
-```
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
 
-Alternatively, you can run it manually with Python 3.6+:
-```bash
-pip3 install -r requirements.txt
-cd YGSCAN
+# The actual entry point is inside the YGscan/ directory.
+cd YGscan
 python3 ygscan.py -h
 ```
 
-##  Usage
+**Note:** dependency compatibility may require adjustment on modern Python versions. This setup is provided as a starting point, **not as a verified end-to-end installation**.
 
-### Active Scan
-To run a direct vulnerability scan against an endpoint:
-```bash
-docker run --rm --entrypoint python3 ygscan ygscan.py -u http://testphp.vulnweb.com
-```
+The current `Dockerfile` uses a legacy working-directory path and should be reviewed before treating Docker usage as supported. A separate [improvement PR](https://github.com/gaddah-yousef/YGscan/pull/1) has been proposed but is **not assumed merged**.
 
-You can also use a file with a list of URLs using the `-f` flag:
-```bash
-docker run --rm -v $(pwd):/data --entrypoint python3 ygscan ygscan.py -f /data/targets.txt
-```
+## 🔐 Safe usage
 
-### Passive Scan (Proxy Mode)
-To capture traffic and perform scanning in real-time acting as an HTTP/HTTPS proxy on port `7778`:
-```bash
-docker run -it --rm -p 7778:7778 --entrypoint python3 ygscan ygscan.py -s 0.0.0.0:7778 --html
-```
-*Note: Once started, you can configure your browser's HTTP proxy to `127.0.0.1:7778`. YGscan will automatically scan any traffic that passes through and will generate a real-time HTML report.*
+- Use only against web applications and endpoints for which you have **explicit authorization**.
+- Work in a laboratory or a scoped penetration-testing engagement.
+- Avoid automatic testing against real websites without permission.
+- Treat scanner findings as leads: reproduce and verify them manually before reporting.
 
-### Customizing Plugins
-Use `--able` to force load only specific modules and `--disable` to ignore others:
-```bash
-# Disable SQLi error plugins
-docker run --rm --entrypoint python3 ygscan ygscan.py -u http://example.com --disable sqli_error
-```
+## 🤝 Upstream attribution
 
-## Editor & Credits
-- **Editor**: yousef_ZEX22
-- Based on the open-source community edition ygscan.
+**YGscan is derived from an earlier open-source community scanner.** This repository showcases adaptation and study; it must not be represented as a wholly original codebase.
+
+See [`CONTRIBUTORS.md`](CONTRIBUTORS.md) and [`LICENSE`](LICENSE) for contributor and licensing information. Follow the original project's license and attribution requirements.
+
+## 👤 Maintainer
+
+**Yousef Gaddah** · [GitHub](https://github.com/gaddah-yousef) · [Other cybersecurity projects](https://github.com/gaddah-yousef/SOC-LAB/blob/main/docs/portfolio/github-projects.md)
